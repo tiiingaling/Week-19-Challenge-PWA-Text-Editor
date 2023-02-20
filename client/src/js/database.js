@@ -15,13 +15,13 @@ const initdb = async () =>
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
     // Create a connection to the database database and version we want to use.
-    const contactDb = await openDB('contact', 1);
+    const jateDb = await openDB('jate', 1);
 
     // Create a new transaction and specify the database and data privileges.
-    const tx = contactDb.transaction('contact', 'readonly');
+    const tx = jateDb.transaction('jate', 'readonly');
   
     // Open up the desired object store.
-    const store = tx.objectStore('contact');
+    const store = tx.objectStore('jate');
   
     // Use the .getAll() method to get all data in the database.
     const request = store.getAll();
@@ -37,12 +37,12 @@ console.error('putDb not implemented');
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async (id) => {
   
-  const contactDb = await openDB('contact', 1);
+  const jateDb = await openDB('jate', 1);
 
 
-  const tx = contactDb.transaction('contact', 'readwrite');
+  const tx = jateDb.transaction('jate', 'readwrite');
 
-  const store = tx.objectStore('contact');
+  const store = tx.objectStore('jate');
 
   const request = store.delete(id);
 
