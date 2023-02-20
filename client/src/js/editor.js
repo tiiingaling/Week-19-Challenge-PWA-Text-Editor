@@ -9,7 +9,7 @@ export default class {
     // check if CodeMirror is loaded
     if (typeof CodeMirror === 'undefined') {
       throw new Error('CodeMirror is not loaded');
-    }
+    } 
 
     this.editor = CodeMirror(document.querySelector('#main'), {
       value: '',
@@ -26,8 +26,11 @@ export default class {
     // Fall back to localStorage if nothing is stored in indexeddb, and if neither is available, set the value to header.
     getDb().then((data) => {
       console.info('Loaded data from IndexedDB, injecting into editor');
-      this.editor.setValue(data || localData || header);
+      console.log(data)
+      this.editor.setValue(data ||localData || header);
     });
+
+    // data is the issue
 
     this.editor.on('change', () => {
       localStorage.setItem('content', this.editor.getValue());
